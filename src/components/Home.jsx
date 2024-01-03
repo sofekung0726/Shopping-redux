@@ -1,7 +1,10 @@
 import React from 'react'
 import AddProduct from './AddProduct'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
+    const products = useSelector((state) => state.products)
+    console.log(products);
     return (
         <div>
             <main className="py-8 max-w-7x1 mx-auto px-4">
