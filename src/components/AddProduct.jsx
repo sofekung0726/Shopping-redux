@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { ADD_PRODUCT } from '../redux/products/actionType'
 import { addProduct } from '../redux/products/actions'
 
 const AddProduct = () => {
