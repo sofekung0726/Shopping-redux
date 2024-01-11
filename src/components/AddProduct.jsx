@@ -18,7 +18,7 @@ const AddProduct = () => {
         reset()
     }
     return (
-        <div className='formCointainer'>
+        <div className='formContainer'>
             <h1 className="formTitle">
                 Add new product
             </h1>

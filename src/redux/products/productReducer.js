@@ -9,39 +9,40 @@ const nextId = (items) => {
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PRODUCT:
-            return [
-                ...state,
-                {
-                    id: nextId(state),
-                    ...action.payload,
-                    price: parseFloat(action.payload.price),
-                    quantity: parseInt(action.payload.quantity)
-                }
-            ];
+          return [
+            ...state,
+            {
+              id: nextId(state),
+              ...action.payload,
+              price: parseInt(action.payload.price),
+              quantity: parseInt(action.payload.quantity),
+            },
+          ];
         case ADD_QUANTITY:
-            return state.map((product) => {
-                if (product.id === action.payload.productId) {
-                    return {
-                        ...product,
-                        quantity: product.quantity + action.payload.quantity
-                    }
-                } else {
-                    return product;
-                }
-            })
+          return state.map((product) => {
+            if (product.id === action.payload.productId) {
+              return {
+                ...product,
+                quantity: product.quantity + action.payload.quantity,
+              };
+            } else {
+              return product;
+            }
+          });
+    
         case REMOVE_QUANTITY:
-            return state.map((product) => {
-                if (product.id === action.payload) {
-                    return {
-                        ...product,
-                        quantity: product.quantity - 1
-                    }
-                } else {
-                    return product
-                }
-            })
+          return state.map((product) => {
+            if (product.id === action.payload) {
+              return {
+                ...product,
+                quantity: product.quantity - 1,
+              };
+            } else {
+              return product;
+            }
+          });
         default:
-            return state;
-    }
+          return state;
+      }
 }
 export default productReducer;
