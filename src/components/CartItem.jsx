@@ -3,6 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import { useDispatch } from 'react-redux';
 import { removeFromCart,increaseQuantity,decreaseQuantity } from '../redux/carts/actions';
 import { addQuantity,removeQuantity } from '../redux/products/actions';
+import Bill from './Bill';
 
 const CartItem = ({product}) => {
     const dispatch = useDispatch();
@@ -10,6 +11,17 @@ const CartItem = ({product}) => {
     const handleremoveFromCart = () => {
       dispatch(removeFromCart(id))
       dispatch(addQuantity(productId, quantity))
+    }
+    if (quantity === 0) {
+      handleremoveFromCart()
+    }
+    const handleIncreaseQuantity = () =>{
+      dispatch(increaseQuantity(id))
+      dispatch(removeQuantity(productId))
+    }
+    const handleDecreaseQuantity = () =>{
+      dispatch(decreaseQuantity(id))
+      dispatch(addQuantity(productId,1))
     }
     return (
       <div className="rounded-lg">
@@ -28,7 +40,7 @@ const CartItem = ({product}) => {
           </div>
           <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
             <div className="flex items-center border-gray-100">
-              <span className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500">
+              <span className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500" onClick={handleDecreaseQuantity} >
                 {" "}
                 -{" "}
               </span>
@@ -39,7 +51,7 @@ const CartItem = ({product}) => {
                 value={quantity}
                 className="h-8 w-8 border bg-white text-center text-xs outline-none"
               />
-              <span className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500">
+              <span className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500" onClick={handleIncreaseQuantity}>
                 {" "}
                 +{" "}
               </span>
@@ -51,8 +63,11 @@ const CartItem = ({product}) => {
               </button>
             </div>
           </div>
+         
         </div>
+        
       </div>
+      
     );
   };
 

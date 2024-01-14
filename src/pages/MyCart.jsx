@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CartItem from '../components/CartItem'
+import Bill from '../components/Bill';
 
 const MyCart = () => {
   const carts = useSelector((state) => state.carts);
@@ -15,7 +16,12 @@ const MyCart = () => {
             ) : (
               <div>No items</div>
             )}
+            
           </div>
+          <div className="space-y-6 md:w-1/3">
+                <Bill/>
+
+            </div>
         </div>
       </div>
     </main>
